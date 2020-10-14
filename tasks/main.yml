@@ -12,3 +12,8 @@
 - name: install nginx
   import_tasks: installation.yml
   when: (ansible_facts['packages']['nginx'] is undefined) or (ansible_facts['packages']['nginx'][0].version != docker_version)
+
+- name: Replace nging.conf
+  template:
+    src=templates/nginx.conf
+    dest=/etc/nginx/nginx.conf
